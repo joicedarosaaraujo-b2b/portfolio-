@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joice Araujo · Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Syne:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #F5F2ED;
+  --ink: #18160F;
+  --ink-mid: #5A5549;
+  --ink-light: #9E9890;
+  --accent: #B85C2A;
+  --accent-bg: #F0E4D8;
+  --line: rgba(24,22,15,0.1);
+  --white: #FDFCFA;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Syne', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.1rem 4rem;
+  background: rgba(245,242,237,0.9);
+  backdrop-filter: blur(14px);
+  border-bottom: 0.5px solid var(--line);
+}
+.nav-logo { font-family: var(--serif); font-size: 16px; letter-spacing: 0.01em; }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a {
+  font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-mid); text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 0.5px solid var(--line);
+}
+.hero-left {
+  padding: 10rem 4rem 5rem;
+  display: flex; flex-direction: column; justify-content: center;
+  border-right: 0.5px solid var(--line);
+}
+.hero-right {
+  padding: 10rem 4rem 5rem;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  background: var(--white);
+}
+.hero-tag {
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 5.5vw, 5rem);
+  line-height: 1.05;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+h1 em { font-style: italic; color: var(--accent); }
+.hero-sub {
+  font-size: 16px; color: var(--ink-mid); max-width: 480px;
+  line-height: 1.8; margin-bottom: 2.5rem;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink); text-decoration: none;
+  border-bottom: 1px solid var(--ink); padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.hero-cta:hover { color: var(--accent); border-color: var(--accent); }
+.hero-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  border: 0.5px solid var(--line); border-radius: 8px; overflow: hidden;
+  margin-bottom: 3rem;
+}
+.hero-stat {
+  padding: 1.5rem;
+  border-right: 0.5px solid var(--line);
+  border-bottom: 0.5px solid var(--line);
+}
+.hero-stat:nth-child(even) { border-right: none; }
+.hero-stat:nth-child(3),
+.hero-stat:nth-child(4) { border-bottom: none; }
+.stat-num {
+  font-family: var(--serif); font-size: 2.2rem; color: var(--ink);
+  line-height: 1; margin-bottom: 4px;
+}
+.stat-label { font-size: 12px; color: var(--ink-light); line-height: 1.4; }
+.hero-loc {
+  font-size: 12px; color: var(--ink-light); letter-spacing: 0.06em;
+}
+
+/* ─── SHARED ─── */
+.section {
+  max-width: 1100px; margin: 0 auto;
+  padding: 6rem 4rem;
+  border-bottom: 0.5px solid var(--line);
+}
+.section-header {
+  display: grid; grid-template-columns: 80px 1fr;
+  gap: 2rem; align-items: baseline; margin-bottom: 3.5rem;
+}
+.section-num { font-family: var(--serif); font-size: 13px; color: var(--ink-light); font-style: italic; }
+h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 400; }
+
+/* ─── SOBRE ─── */
+.sobre-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: start; }
+.sobre-text { font-size: 16px; color: var(--ink-mid); line-height: 1.9; }
+.sobre-text p + p { margin-top: 1.2rem; }
+.sobre-text strong { color: var(--ink); font-weight: 500; }
+.sobre-aside {}
+.aside-block { margin-bottom: 2rem; }
+.aside-label {
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-light); margin-bottom: 0.75rem;
+}
+.aside-val { font-size: 14px; color: var(--ink); line-height: 1.6; }
+
+/* ─── TRAJETÓRIA ─── */
+.traj-list { display: flex; flex-direction: column; }
+.traj-item {
+  display: grid; grid-template-columns: 200px 1fr;
+  gap: 3rem; padding: 2.5rem 0;
+  border-top: 0.5px solid var(--line);
+  align-items: start;
+}
+.traj-item:last-child { border-bottom: 0.5px solid var(--line); }
+.traj-period { font-size: 12px; color: var(--ink-light); letter-spacing: 0.06em; padding-top: 4px; }
+.traj-current {
+  display: inline-block; font-size: 10px; letter-spacing: 0.1em;
+  text-transform: uppercase; background: var(--accent-bg);
+  color: var(--accent); padding: 3px 10px; border-radius: 20px;
+  margin-bottom: 6px;
+}
+.traj-role { font-family: var(--serif); font-size: 1.15rem; margin-bottom: 3px; font-weight: 400; }
+.traj-company { font-size: 13px; color: var(--ink-light); margin-bottom: 1rem; letter-spacing: 0.04em; }
+.traj-bullets { list-style: none; }
+.traj-bullets li {
+  font-size: 14px; color: var(--ink-mid); line-height: 1.65;
+  padding: 5px 0; padding-left: 16px; position: relative;
+}
+.traj-bullets li::before {
+  content: '–'; position: absolute; left: 0; color: var(--accent);
+}
+
+/* ─── HABILIDADES ─── */
+.skills-outer { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.skills-group {}
+.skills-group-title {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.25rem;
+}
+.skills-list { display: flex; flex-direction: column; gap: 0; }
+.skill-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.75rem 0; border-bottom: 0.5px solid var(--line);
+}
+.skill-name { font-size: 14px; color: var(--ink); }
+.skill-dots { display: flex; gap: 4px; }
+.dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--line);
+}
+.dot.on { background: var(--accent); }
+
+/* ─── CASE ─── */
+.case-wrap {
+  background: var(--white);
+  border: 0.5px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.case-top {
+  display: grid; grid-template-columns: 1.2fr 1fr;
+  border-bottom: 0.5px solid var(--line);
+}
+.case-top-left { padding: 3rem; border-right: 0.5px solid var(--line); }
+.case-top-right { padding: 3rem; }
+.case-tag {
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1rem;
+}
+.case-title { font-family: var(--serif); font-size: 1.7rem; margin-bottom: 0.75rem; font-weight: 400; line-height: 1.25; }
+.case-desc { font-size: 14px; color: var(--ink-mid); line-height: 1.75; }
+.case-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.case-metric {
+  padding: 1.5rem;
+  border-right: 0.5px solid var(--line);
+  border-bottom: 0.5px solid var(--line);
+}
+.case-metric:nth-child(even) { border-right: none; }
+.case-metric:nth-child(3),
+.case-metric:nth-child(4) { border-bottom: none; }
+.cm-num { font-family: var(--serif); font-size: 2rem; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+.cm-label { font-size: 12px; color: var(--ink-light); line-height: 1.4; }
+.cm-bench { font-size: 11px; color: var(--accent); margin-top: 3px; }
+.case-body { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 0.5px solid var(--line); }
+.case-col { padding: 2rem 2.5rem; border-right: 0.5px solid var(--line); }
+.case-col:last-child { border-right: none; }
+.case-col-label {
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-light); margin-bottom: 1rem;
+}
+.case-col-title { font-size: 14px; font-weight: 500; margin-bottom: 0.4rem; }
+.case-col-text { font-size: 13px; color: var(--ink-mid); line-height: 1.65; }
+
+/* ─── FORMAÇÃO ─── */
+.formacao-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--line); border: 0.5px solid var(--line); border-radius: 12px; overflow: hidden; }
+.formacao-item { background: var(--white); padding: 2rem; }
+.fi-year { font-size: 11px; color: var(--ink-light); letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+.fi-title { font-family: var(--serif); font-size: 1rem; margin-bottom: 0.3rem; font-weight: 400; line-height: 1.3; }
+.fi-inst { font-size: 12px; color: var(--ink-light); }
+.fi-type {
+  display: inline-block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  background: var(--accent-bg); color: var(--accent);
+  padding: 2px 8px; border-radius: 20px; margin-top: 0.75rem;
+}
+
+/* ─── CONTATO ─── */
+.contact-wrap {
+  background: var(--ink); border-radius: 16px;
+  padding: 5rem 4rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+}
+.contact-left h2 { font-family: var(--serif); color: #F5F2ED; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 400; line-height: 1.2; }
+.contact-sub { font-size: 15px; color: rgba(245,242,237,0.55); margin-top: 1rem; line-height: 1.75; }
+.contact-right {}
+.contact-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem 0; border-bottom: 0.5px solid rgba(245,242,237,0.1); }
+.contact-item:first-child { border-top: 0.5px solid rgba(245,242,237,0.1); }
+.ci-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,242,237,0.35); min-width: 80px; padding-top: 2px; }
+.ci-val { font-size: 14px; color: rgba(245,242,237,0.85); }
+.ci-val a { color: rgba(245,242,237,0.85); text-decoration: none; }
+.ci-val a:hover { color: var(--accent); }
+
+/* ─── FOOTER ─── */
+footer {
+  max-width: 1100px; margin: 0 auto;
+  padding: 2rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 0.5px solid var(--line);
+}
+.footer-name { font-family: var(--serif); font-size: 14px; }
+.footer-copy { font-size: 12px; color: var(--ink-light); }
+
+/* ─── ANIMAÇÃO ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-left { animation: fadeUp 0.8s ease both; }
+.hero-right { animation: fadeUp 0.8s ease 0.15s both; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left, .hero-right { padding: 7rem 1.5rem 3rem; border: none; }
+  .section { padding: 3.5rem 1.5rem; }
+  .section-header { grid-template-columns: 1fr; gap: 0.5rem; }
+  .sobre-grid, .skills-outer, .traj-item { grid-template-columns: 1fr; gap: 2rem; }
+  .case-top, .case-body { grid-template-columns: 1fr; }
+  .case-top-left, .case-col { border-right: none; border-bottom: 0.5px solid var(--line); }
+  .case-col:last-child { border-bottom: none; }
+  .formacao-grid { grid-template-columns: 1fr; }
+  .contact-wrap { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+  footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Joice Araujo</span>
+  <div class="nav-links">
+    <a href="#sobre">Sobre</a>
+    <a href="#trajetoria">Trajetória</a>
+    <a href="#habilidades">Habilidades</a>
+    <a href="#case">Case</a>
+    <a href="#contato">Contato</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Marketing · Estratégia · Liderança</div>
+    <h1>Joice<br><em>Araujo</em></h1>
+    <p class="hero-sub">
+      Especialista em Marketing com visão generalista e atuação estratégica — de Growth e Social Selling a branding, eventos e go-to-market. Agora de olho no próximo nível: liderar pessoas e times.
+    </p>
+    <a class="hero-cta" href="#trajetoria">Ver trajetória →</a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">anos de atuação em marketing</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">42%</div>
+        <div class="stat-label">taxa de resposta em Social Selling (mercado: 25–30%)</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">3</div>
+        <div class="stat-label">segmentos diferentes — imobiliário, agência e SaaS B2B</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">12+</div>
+        <div class="stat-label">certificações em marketing e gestão</div>
+      </div>
+    </div>
+    <div class="hero-loc">📍 Blumenau, SC</div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="section" id="sobre">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Sobre</h2>
+  </div>
+  <div class="sobre-grid">
+    <div class="sobre-text">
+      <p>Sou especialista em marketing com uma característica que virou diferencial: <strong>visão generalista</strong>. Já atuei em growth, branding, eventos, social selling, conteúdo, campanhas pagas, CRM, ABM e go-to-market. Não porque não sei focar — mas porque aprender em múltiplas frentes me deu a capacidade de enxergar o todo e conectar pontos que especialistas às vezes não conseguem.</p>
+      <p>Tenho perfil analítico e orientado a resultados, mas sem abrir mão da parte humana do marketing: o que a marca comunica, como a pessoa se sente, o que de fato move comportamento. Essa mistura é o que me faz transitar bem entre visão estratégica e execução.</p>
+      <p>Agora estou num momento de transição consciente: quero <strong>liderar times de marketing</strong>. Venho estudando gestão de equipes com intenção — porque reconhecer que está pronta é só metade do caminho. A outra metade é se preparar.</p>
+    </div>
+    <div class="sobre-aside">
+      <div class="aside-block">
+        <div class="aside-label">Formação</div>
+        <div class="aside-val">Tecnologia em Marketing · UNINTER<br>Jornalismo · Estácio de Sá</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Localização</div>
+        <div class="aside-val">Blumenau, SC</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Foco atual</div>
+        <div class="aside-val">Social Selling · ABM · Liderança de Marketing</div>
+      </div>
+      <div class="aside-block">
+        <div class="aside-label">Setores</div>
+        <div class="aside-val">SaaS B2B · Imobiliário · Agência</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAJETÓRIA -->
+<section class="section" id="trajetoria">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Trajetória</h2>
+  </div>
+  <div class="traj-list">
+
+    <div class="traj-item">
+      <div class="traj-period">
+        <span class="traj-current">Atual</span><br>
+        Out 2024 – presente
+      </div>
+      <div>
+        <div class="traj-role">Social Seller Specialist</div>
+        <div class="traj-company">Hi Platform · SaaS B2B</div>
+        <ul class="traj-bullets">
+          <li>Estruturação de uma frente de Social Selling que não existia: playbook, rotina, cadências e integração com vendas.</li>
+          <li>Estratégias de ABM com mapeamento de stakeholders e personalização baseada em CAC, LTV e maturidade digital.</li>
+          <li>42% de taxa de resposta nas abordagens — acima da média de mercado de 25–30%.</li>
+          <li>Análise de KPIs de conversão MQL → SQL, ciclo de vendas e impacto em receita.</li>
+          <li>Organização e execução de eventos corporativos B2B para posicionamento de marca.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="traj-item">
+      <div class="traj-period">Mar 2024 – Out 2024</div>
+      <div>
+        <div class="traj-role">Consultora de Marketing</div>
+        <div class="traj-company">Volare Branding · Agência</div>
+        <ul class="traj-bullets">
+          <li>Gestão de equipe e liderança de reuniões de pauta e briefing com clientes.</li>
+          <li>Planejamento e implementação de estratégias de conteúdo e calendários editoriais.</li>
+          <li>Atendimento de carteira diversificada: Joinin, DGL Serv, Dominium Tech, APR Tech, Plattano Tecnologia, Joclamar.</li>
+          <li>Gestão e análise de campanhas via Meta Ads, Google Ads, LinkedIn Ads e Google Analytics.</li>
+          <li>Criação e execução de ações de endomarketing e estratégias de branding.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="traj-item">
+      <div class="traj-period">Jan 2023 – Mar 2024</div>
+      <div>
+        <div class="traj-role">Analista de Marketing</div>
+        <div class="traj-company">Torresul Imobiliária · Mercado Imobiliário</div>
+        <ul class="traj-bullets">
+          <li>Planejamento e execução de campanhas para matriz, filiais e empreendimentos de alto ticket no litoral.</li>
+          <li>Assessoria de imprensa, organização de eventos e distribuição de demandas para a equipe.</li>
+          <li>Gestão de e-mail marketing e geração de leads via RD Station; análise de dados com GA4.</li>
+          <li>Captação de imagens, roteirização de vídeos e produção de cases de sucesso com clientes.</li>
+          <li>Criação de personas, briefings e calendários editoriais para redes e demais mídias digitais.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HABILIDADES -->
+<section class="section" id="habilidades">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>Habilidades e ferramentas</h2>
+  </div>
+  <div class="skills-outer">
+    <div>
+      <div class="skills-group">
+        <div class="skills-group-title">Estratégia e Marketing</div>
+        <div class="skills-list">
+          <div class="skill-row"><span class="skill-name">Social Selling &amp; ABM</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div></div>
+          <div class="skill-row"><span class="skill-name">Growth Marketing</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div></div>
+          <div class="skill-row"><span class="skill-name">Go-to-Market</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div></div>
+          <div class="skill-row"><span class="skill-name">Branding e Posicionamento</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div></div>
+          <div class="skill-row"><span class="skill-name">Eventos Estratégicos</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div></div>
+          <div class="skill-row"><span class="skill-name">Gestão de Equipes</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="skills-group">
+        <div class="skills-group-title">Ferramentas e Plataformas</div>
+        <div class="skills-list">
+          <div class="skill-row"><span class="skill-name">RD Station &amp; Salesforce</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div></div>
+          <div class="skill-row"><span class="skill-name">Meta Ads &amp; Google Ads</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div></div>
+          <div class="skill-row"><span class="skill-name">Google Analytics 4</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div></div>
+          <div class="skill-row"><span class="skill-name">LinkedIn Ads &amp; Sales Nav.</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div></div>
+          <div class="skill-row"><span class="skill-name">Notion · Asana · Monday</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div></div>
+          <div class="skill-row"><span class="skill-name">Adobe CC &amp; CapCut</span><div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE -->
+<section class="section" id="case">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>Case em destaque</h2>
+  </div>
+  <div class="case-wrap">
+    <div class="case-top">
+      <div class="case-top-left">
+        <div class="case-tag">Social Selling · SaaS B2B · 2025–2026</div>
+        <div class="case-title">Estruturando Social Selling do zero numa empresa de tecnologia</div>
+        <div class="case-desc">
+          A empresa precisava de uma frente de Social Selling para gerar demanda qualificada e abrir oportunidades comerciais no LinkedIn. Não havia processo, rotina ou estrutura. O desafio foi transformar essa intenção em algo real — com playbook, cadências, métricas e integração com vendas.
+        </div>
+      </div>
+      <div class="case-top-right">
+        <div class="case-metrics">
+          <div class="case-metric">
+            <div class="cm-num">42%</div>
+            <div class="cm-label">Taxa de resposta nas abordagens</div>
+            <div class="cm-bench">↑ Mercado: 25–30%</div>
+          </div>
+          <div class="case-metric">
+            <div class="cm-num">127</div>
+            <div class="cm-label">Novas conexões qualificadas no Q1</div>
+            <div class="cm-bench">+40/mês em média</div>
+          </div>
+          <div class="case-metric">
+            <div class="cm-num">95</div>
+            <div class="cm-label">Conversas ativas geradas</div>
+            <div class="cm-bench">jan + fev + mar</div>
+          </div>
+          <div class="case-metric">
+            <div class="cm-num">1k+</div>
+            <div class="cm-label">Contatos mapeados e classificados</div>
+            <div class="cm-bench">por prioridade e perfil</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-col">
+        <div class="case-col-label">O processo</div>
+        <div class="case-col-title">Diagnóstico → Estrutura → Escala</div>
+        <div class="case-col-text">Primeira etapa foi entender o terreno: análise do SSI, otimização de perfil, higienização da base. Só depois veio o playbook, a rotina semanal e as cadências.</div>
+      </div>
+      <div class="case-col">
+        <div class="case-col-label">A rotina</div>
+        <div class="case-col-title">Semana estruturada com intenção</div>
+        <div class="case-col-text">Segunda: inteligência e dados. Terça/quarta: execução e conteúdo. Quinta: integração com vendas. Sexta: análise e ajuste. Sem estrutura, o urgente engole o importante.</div>
+      </div>
+      <div class="case-col">
+        <div class="case-col-label">A evolução</div>
+        <div class="case-col-title">De novos negócios para ABM</div>
+        <div class="case-col-text">A estratégia evoluiu de prospecção pura para um ecossistema completo: novos negócios, clientes da base e contas estratégicas com abordagem ABM personalizada.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMAÇÃO -->
+<section class="section" id="formacao">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2>Formação e certificações</h2>
+  </div>
+  <div class="formacao-grid">
+    <div class="formacao-item">
+      <div class="fi-year">2020 – 2022</div>
+      <div class="fi-title">Tecnologia em Marketing</div>
+      <div class="fi-inst">UNINTER – Centro Universitário Internacional</div>
+      <span class="fi-type">Graduação</span>
+    </div>
+    <div class="formacao-item">
+      <div class="fi-year">2015 – 2019</div>
+      <div class="fi-title">Bacharelado em Jornalismo</div>
+      <div class="fi-inst">Estácio de Sá</div>
+      <span class="fi-type">Graduação</span>
+    </div>
+    <div class="formacao-item">
+      <div class="fi-year">2025</div>
+      <div class="fi-title">Fórum E-Commerce Brasil</div>
+      <div class="fi-inst">E-Commerce Brasil · 16h</div>
+      <span class="fi-type">Evento</span>
+    </div>
+    <div class="formacao-item">
+      <div class="fi-year">2024</div>
+      <div class="fi-title">Imersão Planejamento para Lideranças de Marketing</div>
+      <div class="fi-inst">Marketing e Vendas</div>
+      <span class="fi-type">Imersão</span>
+    </div>
+    <div class="formacao-item">
+      <div class="fi-year">2024</div>
+      <div class="fi-title">IA para Marketing Essencial</div>
+      <div class="fi-inst">Conversion Academy</div>
+      <span class="fi-type">Certificação</span>
+    </div>
+    <div class="formacao-item">
+      <div class="fi-year">2024</div>
+      <div class="fi-title">Growth Marketing Essencial 2.0</div>
+      <div class="fi-inst">Conversion Academy</div>
+      <span class="fi-type">Certificação</span>
+    </div>
+    <div class="formacao-item">
+      <div class="fi-year">2024</div>
+      <div class="fi-title">Next SEO</div>
+      <div class="fi-inst">Conversion Academy · 5h</div>
+      <span class="fi-type">Certificação</span>
+    </div>
+    <div class="formacao-item">
+      <div class="fi-year">2023</div>
+      <div class="fi-title">Neuromarketing Fórum Brasil</div>
+      <div class="fi-inst">IBN · ABN · 12h</div>
+      <span class="fi-type">Evento</span>
+    </div>
+    <div class="formacao-item">
+      <div class="fi-year">2023</div>
+      <div class="fi-title">Marketing para Eventos</div>
+      <div class="fi-inst">7 horas</div>
+      <span class="fi-type">Certificação</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="section" id="contato">
+  <div class="contact-wrap">
+    <div class="contact-left">
+      <h2>Vamos<br><em>conversar?</em></h2>
+      <p class="contact-sub">Aberta a conversas sobre oportunidades em liderança de marketing, projetos estratégicos ou trocas sobre o mercado.</p>
+    </div>
+    <div class="contact-right">
+      <div class="contact-item">
+        <span class="ci-label">E-mail</span>
+        <span class="ci-val"><a href="mailto:joi_ce2@hotmail.com">joi_ce2@hotmail.com</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="ci-label">LinkedIn</span>
+        <span class="ci-val"><a href="https://www.linkedin.com/in/joice-da-rosa-araujo-a2a6511a7/" target="_blank">/joice-da-rosaaraujo</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="ci-label">Telefone</span>
+        <span class="ci-val">(48) 9 9181-4974</span>
+      </div>
+      <div class="contact-item">
+        <span class="ci-label">Localização</span>
+        <span class="ci-val">Blumenau, SC</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-name">Joice Araujo</span>
+  <span class="footer-copy">Portfólio · 2026</span>
+</footer>
+
+</body>
+</html>
